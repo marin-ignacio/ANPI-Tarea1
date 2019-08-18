@@ -71,8 +71,3 @@ def iodf(funct, x, tol, graf=1):
 
     return [x, k]
 
-
-
-
-
-
