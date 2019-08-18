@@ -77,13 +77,3 @@ def euler(funct, x, tol, graf=0):
 
     return [x, k]
 
-
-
-
-
-
-
-
-
-
-
