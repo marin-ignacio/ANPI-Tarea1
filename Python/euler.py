@@ -1,10 +1,9 @@
 from math import *
-import plotter as plt
+from mpmath import *
 
-def iodf(funct, x, tol, graf=1):
+def euler(funct, x, tol, graf=0):
     '''
-    Function that implements the improved Ostrowski’s method free from derivatives
-    to solve f(x) = 0
+    Function that implements the Euler's to solve f(x) = 0
 
     Parameters
     ----------
@@ -32,6 +31,14 @@ def iodf(funct, x, tol, graf=1):
                                   'exp': exp, 'log': log, 'sqrt': sqrt,
                                   'cos': cos, 'sin': sin, 'tan': tan})
 
+    #First derivative of the input function
+    df = lambda x: diff(f, x)
+
+    #Second derivative of the input function
+    d2f = lambda x: diff(df, x)
+
+    Lf = lambda x: (f(x) * d2f(x)) / (df(x) ** 2)
+
     #Iteration counter
     k = 0
 
@@ -40,16 +47,18 @@ def iodf(funct, x, tol, graf=1):
     #Function images f(x) array
     fxs = [abs(f(x))]
 
-    while(abs(f(x)) >= tol and k <= 100):
+    while(abs(f(x)) >= tol):
 
-        fx = f(x)
-        y = x - (2 * (fx ** 2)) / (f(x + fx) - f(x - fx))
-
-        fy = f(y)
-        z = y - fy * ((y - x) / (2 * fy - fx))
+        print('-----------------------------------------------')
+        print('Iteration ', k)
+        print('x=',x)
+        print('f(x)=',f(x))
+        #print('df(x)=',df(x))
+        #print('d2f(x)=',d2f(x))
+        #print('Lf(x)=',Lf(x))
 
         #Compute the current value of 'x'
-        x = z - f(z) * ((y - x) / (2 * fy - fx))
+        x = x - ((2 / (1 + sqrt(1 - 2 * Lf(x)))) * (f(x) / df(x)))
 
         #Increase the iteration counter
         k += 1
@@ -57,19 +66,21 @@ def iodf(funct, x, tol, graf=1):
         #Save the iteration values
         iterations.append(k)
         fxs.append(abs(f(x)))
-        
-        print('-----------------------------------------------')
-        print('Iteration ', k)
-        print('y=', y)
-        print('z=', z)
-        print('x=', x)
-        print('f(x)=',f(x))
-        
+
+    print()
+    print('x=',x)
+    print('f(x)=',f(x))   
+
     if(1 == graf):
         #Show 'iteration vs |f(x)|' graphic
-        plt.graph(iterations, fxs)    
+        plt.graph(iterations, fxs)  
 
     return [x, k]
+
+
+
+
+
 
 
 
