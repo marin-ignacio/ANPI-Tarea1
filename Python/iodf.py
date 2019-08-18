@@ -69,9 +69,3 @@ def iodf(funct, x, tol, graf=1):
         plt.graph(iterations, fxs)    
 
     return [x, k]
-
-
-
-
-
-
