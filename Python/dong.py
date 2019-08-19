@@ -2,32 +2,34 @@ from math import *
 from mpmath import *
 import plotter as plt
 
-def euler(funct, x, tol, graf=1):
+def d87(funct, m, x, tol, graf=1):
     '''
     |
-    | Function that implements the Euler's to solve f(x) = 0
+    | Function that implements the Dong's method (1987)(D87) to solve f(x) = 0
     |
-    | ------------------------------------------------------------------------------
+    | ---------------------------------------------------------------------------------
     | Parameters:
     | -----------
     |   funct :
-    |        Text that represents the function f(x)
-    |    x :
-    |        Initial value of the iterative method
-    |    tol :
-    |        Stop criterion of the iterative method
-    |    graf : 
-    |        A number, 1 show the graph, 0 don't show the graph
+    |       Text that represents the function f(x)
+    |   m :
+    |       Multiplicity of function's roots
+    |   x :
+    |       Initial value of the iterative method
+    |   tol :
+    |       Stop criterion of the iterative method
+    |   graf : 
+    |       A number, 1 show the graph, 0 don't show the graph
     |        
     | Returns:
     | --------
-    |    x_aprox :
+    |   x_aprox :
     |       Approximation to the solution of the equation f(x) = 0
-    |    iter :
-    |        Number of iterations used to approximate the zero of the function
-    |    graf : 
-    |        Graph of iteration (k) vs errors (|f(xk)|) of the iterative method
-    | ------------------------------------------------------------------------------
+    |   iter :
+    |       Number of iterations used to approximate the zero of the function
+    |   graf : 
+    |       Graph of iteration (k) vs errors (|f(xk)|) of the iterative method
+    | ---------------------------------------------------------------------------------
     |
     | The syntax rules for the input function are as follows:
     |     a. Use 'x' as variable name
@@ -36,7 +38,7 @@ def euler(funct, x, tol, graf=1):
     |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
     |
     '''
-
+    
     try:
         #Create a callable function from the input string function
         f = lambda x: eval(funct, {'x': x, 'pi': pi, 'e': e,
@@ -45,11 +47,6 @@ def euler(funct, x, tol, graf=1):
 
         #First derivative of the input function
         df = lambda x: diff(f, x)
-
-        #Second derivative of the input function
-        d2f = lambda x: diff(df, x)
-
-        Lf = lambda x: (f(x) * d2f(x)) / (df(x) ** 2)
 
         #Iteration counter
         k = 0
@@ -65,14 +62,16 @@ def euler(funct, x, tol, graf=1):
             print('Iteration ', k)
             print('x=',x)
             print('f(x)=',f(x))
-            #print('df(x)=',df(x))
-            #print('d2f(x)=',d2f(x))
-            #print('Lf(x)=',Lf(x))
 
             try:
+                fx = f(x)
+                dfx = df(x)
+                y = x - fx / dfx
+                dfy = df(y)
+                
                 #Compute the current value of 'x'
-                x = x - ((2 / (1 + sqrt(1 - 2 * Lf(x)))) * (f(x) / df(x)))
-
+                x = y - fx / ((((m / (m - 1))**(m + 1)) * dfy) + (((m - (m**2) - 1) / ((m - 1) ** 2)) * dfx))
+                
                 #Increase the iteration counter
                 k += 1
 
