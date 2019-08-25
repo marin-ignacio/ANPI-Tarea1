@@ -33,6 +33,9 @@
     '''
 
 def muller_bi(fu,x0,x1,x2):
+    f = lambda x: eval(fu, {'x': x, 'pi': pi, 'e': e,'exp': exp,
+                            'log': log, 'sqrt': sqrt,'cos': cos,
+                            'sin': sin, 'tan': tan})
     x0_x2 = (x0-x2)**2
     x1_x2 = (x1-x2)
     x2_x2 = 0
