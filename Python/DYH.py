@@ -49,15 +49,15 @@ def DehghanANDHajarian(func, xo,tol,graf = 1):
                 itera += 1
 
                 fx = evaluate(func,x)
-                w = x + eval(func)
-                fw = evaluate(func,w)
-                d = x - eval(func)
+                y = x + evaluate(func,x)
+                fy = evaluate(func,y)
+                d = x - evaluate(func,x)
                 fd = evaluate(func,d)
 
-                z = x - ((2*(fx**2))/(fw - fd))
+                z = x - ((2*(fx**2))/(fy - fd))
                 fz = evaluate(func,z)
                 
-                xAprox = x - ((2*fx*(fz-fx))/(fw -fd))
+                xAprox = x - ((2*fx*(fz-fx))/(fy -fd))
 
                 x = xAprox
                 tempTol = abs(eval(func))
