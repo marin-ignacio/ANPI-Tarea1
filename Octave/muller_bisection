@@ -1,0 +1,21 @@
+function [r_2_1] = muller_bisection(func,x0,x1,x2)
+    x = x0
+    x0_x2 = (x-x2)^2
+    x1_x2 = (x1-x2)
+    x2_x2 = 1
+    
+    M = [x0_x2 x1_x2 x2_x2;x0_x2 x1_x2 x2_x2; x0_x2 x1_x2 x2_x2];
+    MR =[evaluate(func,x);evaluate(func,x1);evaluate(func,x2)];
+    X = linsolve(M,MR);
+    disp(X)
+    a_2 = X(1);
+    b_2 = X(2);
+    c_2 = X(3);
+    if (b_2 + sqrt((b_2)^2 - 4*a_2*c_2)) > (b_2 - sqrt((b_2)^2 - 4*a_2*c_2))
+        r_2_1 = (x2 - ((2*c_2)/(b_2 + sqrt((b_2)^2 - 4*a_2*c_2))));
+    else
+        r_2_1 = (x2 - ((2*c_2)/(b_2 - sqrt((b_2)^2 - 4*a_2*c_2))));
+    
+    endif
+        
+endfunction
