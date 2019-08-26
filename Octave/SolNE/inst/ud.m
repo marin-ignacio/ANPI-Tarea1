@@ -26,6 +26,143 @@ endfunction
 function [r] = evaluate(f, x)
   r = eval(f);
 endfunction
+
+%-------------------------------------------------------------------------------
+% EULER: método 1 
+%-------------------------------------------------------------------------------
+%    |
+%    | Function that implements the Euler's to solve f(x) = 0
+%    |
+%    | ------------------------------------------------------------------------------
+%    | Parameters:
+%    | -----------
+%    |   funct :
+%    |        Text that represents the function f(x)
+%    |    x :
+%    |        Initial value of the iterative method
+%    |    tol :
+%    |        Stop criterion of the iterative method
+%    |    graf : 
+%    |        A number, 1 show the graph, 0 don't show the graph
+%    |        
+%    | Returns:
+%    | --------
+%    |    x_aprox :
+%    |       Approximation to the solution of the equation f(x) = 0
+%    |    iter :
+%    |        Number of iterations used to approximate the zero of the function
+%    |    graf : 
+%    |        Graph of iteration (k) vs errors (|f(xk)|) of the iterative method
+%    | ------------------------------------------------------------------------------
+%    |
+%    | The syntax rules for the input function are as follows:
+%    |     a. Use 'x' as variable name
+%    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+%    |     c. To place and exponent use '^'
+%    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+%    |
+function [xAprox, iter] = euler(f, xo, tol, graf=1)
+  x = xo;
+  %Iteration counter
+  iter = 0;
+  try
+    do
+      %Increase the iteration counter
+      iter++;
+      
+      fx = evaluate(f, x)
+      dfx = derivate(f, x);
+      d2fx = derivate2(f, x); 
+      lf = (fx * d2fx) / (dfx ^ 2);
+      
+      %Compute the current value of 'x'
+      xAprox = x - ((2 / (1 + sqrt(1 - 2 * lf))) * (fx / dfx));
+      x = xAprox;
+      
+      tempTol = abs(eval(f));
+      error(iter) = {tempTol};
+    until (tempTol <= tol);
+    if(graf)
+      %Show 'iteration vs |f(x)|' graphic
+      plot(cell2mat(error));
+      ylabel('Errores (|f(x)|)');
+      xlabel('Iteraciones (k)');
+      title('Gráfica comparativa: Euler method');
+    endif
+  catch err
+    warning(err.identifier, err.message);
+  end_try_catch
+endfunction
+
+%-------------------------------------------------------------------------------
+% DONG: método 2
+%-------------------------------------------------------------------------------
+%    |
+%    | Function that implements the Dong's method (1987)(D87) to solve f(x) = 0
+%    |
+%    | ---------------------------------------------------------------------------------
+%    | Parameters:
+%    | -----------
+%    |   funct :
+%    |       Text that represents the function f(x)
+%    |   m :
+%    |       Multiplicity of function's roots
+%    |   x :
+%    |       Initial value of the iterative method
+%    |   tol :
+%    |       Stop criterion of the iterative method
+%    |   graf : 
+%    |       A number, 1 show the graph, 0 don't show the graph
+%    |        
+%    | Returns:
+%    | --------
+%    |   x_aprox :
+%    |       Approximation to the solution of the equation f(x) = 0
+%    |   iter :
+%    |       Number of iterations used to approximate the zero of the function
+%    |   graf : 
+%    |       Graph of iteration (k) vs errors (|f(xk)|) of the iterative method
+%    | ---------------------------------------------------------------------------------
+%    |
+%    | The syntax rules for the input function are as follows:
+%    |     a. Use 'x' as variable name
+%    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+%    |     c. To place and exponent use '**'
+%    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+%    |
+function [xAprox, iter] = dong(f, m, xo, tol, graf=1)
+  x = xo;
+  %Iteration counter
+  iter = 0;
+  try
+    do
+      %Increase the iteration counter
+      iter++;
+      
+      fx = evaluate(f, x)
+      dfx = derivate(f, x);
+      y = x - fx / dfx;
+      dfy = derivate(f, y);
+      
+      %Compute the current value of 'x'
+      xAprox = y - fx / ((((m / (m - 1))^(m + 1)) * dfy) + (((m - (m^2) - 1) / ((m - 1)^2)) * dfx));
+      x = xAprox;
+      
+      tempTol = abs(eval(f));
+      error(iter) = {tempTol};
+    until (tempTol <= tol);
+    if(graf)
+      %Show 'iteration vs |f(x)|' graphic
+      plot(cell2mat(error));
+      ylabel('Errores (|f(x)|)');
+      xlabel('Iteraciones (k)');
+      title('Gráfica comparativa: Dong method');
+    endif
+  catch err
+    warning(err.identifier, err.message);
+  end_try_catch
+endfunction
+
   
 %-------------------------------------------------------------------------------
 %Métodos numerico iterativo utilizando de derivada
