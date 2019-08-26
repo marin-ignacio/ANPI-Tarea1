@@ -1,7 +1,8 @@
 from math import *
 import matplotlib.pyplot as plt
 import numpy as np
-
+from sympy import *
+from numpy import *
 #-------------------------------------------------------------------------------
 # Useful methods
 #-------------------------------------------------------------------------------
