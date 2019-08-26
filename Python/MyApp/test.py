@@ -42,9 +42,9 @@ f = 'x**2'; x0 = 1; m = 5
 #Expected Answer: x = 0.038709845246447605
 ans = sne_ud_3(f, m, x0, tol,graf)
 
-print('root: x=3.00722843')
+print('root: x = 0.025780961748129938')
 print('x_aprox:', ans[0])
-print('iter:', ans[1])
+print('iter:', ans[9])
 print()
 
 #------------------------------------------------------------------------------
