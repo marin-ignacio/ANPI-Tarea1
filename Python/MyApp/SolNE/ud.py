@@ -379,10 +379,10 @@ def sne_ud_5(f, xo, tol, graf = 1):
             error.append(tempTol)
             iteration.append(itera)
         if(graf):
-            plot(iteration,error)
-            ylabel('Errores')
-            xlabel('Iteraciones')
-            show()
+            plt.plot(iteration,error)
+            plt.ylabel('Errores')
+            plt.xlabel('Iteraciones')
+            plt.show()
         itera = itera + 1
         return xAprox, itera
     except SyntaxError as err:
@@ -446,10 +446,10 @@ def sne_ud_6(f, xo, tol, graf = 1):
             error.append(tempTol)
             iteration.append(itera)
         if(graf):
-            plot(iteration,error)
-            ylabel('Errores')
-            xlabel('Iteraciones')
-            show()
+            plt.plot(iteration,error)
+            plt.ylabel('Errores')
+            plt.xlabel('Iteraciones')
+            plt.show()
         itera = itera + 1
         return xAprox, itera
     except SyntaxError as err:
