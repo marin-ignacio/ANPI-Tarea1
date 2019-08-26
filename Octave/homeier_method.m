@@ -32,9 +32,9 @@ function [] = homeier_method(func, m, x, tol, graf = 1)
       plot(cell2mat(error));
       ylabel('Errores (|f(x)|)');
       xlabel('Iteraciones (k)');
-      title('Gr·fica comparativa: MÈtodo de Homeier');
+      title('Gr√°fica comparativa: M√©todo de Homeier');
     endif
   catch err
-    %warning(err.identifier, err.message);
+    warning(err.identifier, err.message);
   end_try_catch
 endfunction
