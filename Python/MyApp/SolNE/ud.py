@@ -1,3 +1,5 @@
+from sympy import *
+from numpy import *
 from math import *
 from mpmath import *
 import matplotlib.pyplot as plt
