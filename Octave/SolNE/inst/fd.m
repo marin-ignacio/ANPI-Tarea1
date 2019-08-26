@@ -4,27 +4,79 @@ format long
 %-------------------------------------------------------------------------------
 %Funciones intermedias
 %-------------------------------------------------------------------------------
-
-function [r] = derivate(func, e)
-  f = @(x) eval(func);
-  syms x;
-  ff = f(x);
-  ffd = diff(ff, x);
-  df = function_handle(ffd);
-  r = df(e);
-endfunction
-
-function [r] = derivate2(func, e)
-  f = @(x) eval(func);
-  syms x;
-  ff = f(x);
-  ffd = diff(diff(ff, x), x);
-  df = function_handle(ffd);
-  r = df(e);
-endfunction
-
 function [r] = evaluate(f, x)
   r = eval(f);
+endfunction
+
+%-------------------------------------------------------------------------------
+% IODF: método 1
+%-------------------------------------------------------------------------------
+%    |
+%    | Function that implements the improved Ostrowski’s method free from derivatives
+%    | to solve f(x) = 0
+%    |
+%    | ------------------------------------------------------------------------------
+%    | Parameters:
+%    | -----------
+%    |   funct :
+%    |        Text that represents the function f(x)
+%    |    x :
+%    |        Initial value of the iterative method
+%    |    tol :
+%    |        Stop criterion of the iterative method
+%    |    graf : 
+%    |        A number, 1 show the graph, 0 don't show the graph
+%    |        
+%    | Returns:
+%    | --------
+%    |    x_aprox :
+%    |       Approximation to the solution of the equation f(x) = 0
+%    |    iter :
+%    |        Number of iterations used to approximate the zero of the function
+%    |    graf : 
+%    |        Graph of iteration (k) vs errors (|f(xk)|) of the iterative method
+%    | ------------------------------------------------------------------------------
+%    |
+%    | The syntax rules for the input function are as follows:
+%    |     a. Use 'x' as variable name
+%    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+%    |     c. To place and exponent use '**'
+%    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+%    |
+%-------------------------------------------------------------------------------
+function [xAprox, iter] = iodf(f, xo, tol, graf=1)
+  x = xo;
+  %Iteration counter
+  iter = 0;
+  try
+    do
+      %Increase the iteration counter
+      iter++;
+      
+      fx = evaluate(f, x);
+      a = x + fx;
+      b = x - fx;
+      y = x - (2 * (fx ^ 2)) / (evaluate(f, a) - evaluate(f, b));
+      fy = evaluate(f, y);
+      z = y - fy * ((y - x) / (2 * fy - fx));
+      
+      %Compute the current value of 'x'
+      xAprox = z - f(z) * ((y - x) / (2 * fy - fx));
+      x = xAprox;
+      
+      tempTol = abs(eval(f));
+      error(iter) = {tempTol};
+    until (tempTol <= tol);
+    if(graf)
+      %Show 'iteration vs |f(x)|' graphic
+      plot(cell2mat(error));
+      ylabel('Errores (|f(x)|)');
+      xlabel('Iteraciones (k)');
+      title('Gráfica comparativa: IODF method');
+    endif
+  catch err
+    warning(err.identifier, err.message);
+  end_try_catch
 endfunction
 
 %-------------------------------------------------------------------------------
