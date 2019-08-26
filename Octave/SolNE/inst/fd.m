@@ -79,6 +79,140 @@ function [xAprox, iter] = iodf(f, xo, tol, graf=1)
   end_try_catch
 endfunction
 
+%-------------------------------------------------------------------------------
+%Steffensen secant method: método 2
+%-------------------------------------------------------------------------------
+%    |
+%    | Function that implements the Jain based on Steffensen secant method free from derivatives
+%    | to solve f(x) = 0
+%    |
+%    | ------------------------------------------------------------------------------
+%    | Parameters:
+%    | -----------
+%    |   funct :
+%    |        Text that represents the function f(x)
+%    |    x :
+%    |        Initial value of the iterative method
+%    |    tol :
+%    |        Stop criterion of the iterative method
+%    |    graf : 
+%    |        A number, 1 show the graph, 0 don't show the graph
+%    |        
+%    | Returns:
+%    | --------
+%    |    x_aprox :
+%    |       Approximation to the solution of the equation f(x) = 0
+%    |    iter :
+%    |        Number of iterations used to approximate the zero of the function
+%    |    graf : 
+%    |        Graph of iteration (k) vs errors (|f(xk)|) of the iterative method
+%    | ------------------------------------------------------------------------------
+%    |
+%    | The syntax rules for the input function are as follows:
+%    |     a. Use 'x' as variable name
+%    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+%    |     c. To place and exponent use '^'
+%    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+%    |
+%-------------------------------------------------------------------------------
+
+function [xAprox, iter] = sne_fd_2(f, xo, tol, graf = 1)
+  x = xo;
+  iter = 0;
+  error = [];
+  iteracion = [];
+  try
+    do
+      iter++;
+      fx=f(x);
+      z=x+f(x);
+      fz=f(z);
+      y=(x-((f(x)^2)/(fz-fx)));
+      fy=f(y);   
+      xAprox= (x - (fx^3)/((fz-fx)*(fx-fy)));
+      x=xAprox;
+      x = xAprox;
+      tempTol = abs(eval(f));
+      error(end+1)= tempTol;
+      iteracion(end+1) = itera; 
+    until (tempTol <= tol);
+    if(graf == 1)
+      plot(error,iteracion);
+      ylabel('Errores (|f(x)|)');
+      xlabel('Iteraciones (k)');
+      title('Gráfica comparativa: Método Jain basado en Steffensen Secant methods');
+    endif
+  catch err
+    warning(err.identifier, err.message);
+  end_try_catch
+endfunction
+%-------------------------------------------------------------------------------
+% Dehghan and hajarian: método 3
+%-------------------------------------------------------------------------------
+%    |
+%    | Function that implements the Dehghan and Hajarian method free from derivatives
+%    | to solve f(x) = 0
+%    |
+%    | ------------------------------------------------------------------------------
+%    | Parameters:
+%    | -----------
+%    |   funct :
+%    |        Text that represents the function f(x)
+%    |    x :
+%    |        Initial value of the iterative method
+%    |    tol :
+%    |        Stop criterion of the iterative method
+%    |    graf : 
+%    |        A number, 1 show the graph, 0 don't show the graph
+%    |        
+%    | Returns:
+%    | --------
+%    |    x_aprox :
+%    |       Approximation to the solution of the equation f(x) = 0
+%    |    iter :
+%    |        Number of iterations used to approximate the zero of the function
+%    |    graf : 
+%    |        Graph of iteration (k) vs errors (|f(xk)|) of the iterative method
+%    | ------------------------------------------------------------------------------
+%    |
+%    | The syntax rules for the input function are as follows:
+%    |     a. Use 'x' as variable name
+%    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+%    |     c. To place and exponent use '^'
+%    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+%    |
+%-------------------------------------------------------------------------------
+
+
+function []= sne_fd_3(func,x,tol, graf =1)
+  itera = 0;
+  error = [];
+  iteracion = [];
+  tempTol = Inf;
+  while tempTol >= tol
+    itera += 1;
+    fx = func(x);
+    y = x + func(x);
+    fy = func(y);
+    d = x - func(x);
+    fd = func(d);
+    
+    z = x -(2*(fx^2))/(fy-fd);
+    fz = func(z);
+    
+    xAprox = x -((2*fx*(fz-fx))/(fy-fd));
+    x = xAprox;
+    tempTol = abs(func(x));
+    error(end+1)= tempTol;
+    iteracion(end+1) = itera; 
+  endwhile
+  if graf==1
+    plot(iteracion,error);
+    ylabel('Errores');
+    xlabel('Iteraciones');
+  endif
+endfunction
+
 %-----------------------------------------------------------------------------------
 % Method 4: Steffensen's Method
 %-----------------------------------------------------------------------------------
