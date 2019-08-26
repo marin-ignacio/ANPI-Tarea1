@@ -253,20 +253,35 @@ function [xAprox, iter] = sne_ud_2(f, xo, tol, graf = 1)
 endfunction
 
 %-------------------------------------------------------------------------------
-%Métodos numerico iterativo utilizando de derivada
+% OSTROWSKI: método 6
 %-------------------------------------------------------------------------------
-%Este método fue desarrollado por Osstrowski
-%Información más detallada puede ser encontrada en la página 370 del artículo "Steffensen type methods for solving nonlinear equations✩", ecuación 2.
-%Documento recuperado de: https://tecdigital.tec.ac.cr/dotlrn/classes/IDC/CE3102/S-2-2019.CA.CE3102.1/file-storage/view/Tareas%2Ftarea-1%2Fart-culos-cient-ficos%2FMetodo2.pdf
-%
-%Estructura del método: [xAprox, iter] = sne_ud_2(f, xo, tol) 
-%Donde:
-%
-%func: Tipo de dato String. Es la ecuación matemática a utilizar.
-%x0: Tipo de dato Integer. Número inicial para comenzar la iteración.
-%tol: Tipo de dato Float. Número mayor a cero que brinda condición de parada para la iteración.
-%xAprox: Tipo de dato Float. El valor de x que se aproxima a la solución de la ecuación no lineal.
-%iterations: Tipo de dato Integer. Brinda las iteraciones requeridas para brindar la tolerancia establecida
+%    |
+%    | Function that implements the Dong's method (1987)(D87) to solve f(x) = 0
+%    |
+%    | ---------------------------------------------------------------------------------
+%    | Parameters:
+%    | -----------
+%    |   funct :
+%    |       Text that represents the function f(x)
+%    |   x :
+%    |       Initial value of the iterative method
+%    |   tol :
+%    |       Stop criterion of the iterative method
+%    |        
+%    | Returns:
+%    | --------
+%    |   x_k :
+%    |       Approximation to the solution of the equation f(x) = 0
+%    |   iterations :
+%    |       Number of iterations used to approximate the zero of the function
+%    | ---------------------------------------------------------------------------------
+%    |
+%    | The syntax rules for the input function are as follows:
+%    |     a. Use 'x' as variable name. Enter a string
+%    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+%    |     c. To place and exponent use '^'
+%    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+%    |
 %-------------------------------------------------------------------------------
 function [x_k, iterations] = ostrowski(func, x0, tol)
   x = x0;
