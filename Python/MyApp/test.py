@@ -78,10 +78,10 @@ print()
 #------------------------------------------------------------------------------
 f = 'e**x-(1/x)'; x0 = 1; tol = 0.001
 
-#Expected Answer: x = 0.5673043631887621
+#Expected Answer: x = 0.5671397801525238
 ans = sne_ud_6(f, x0, tol)
 
-print('root: x=0.5673043631887621')
+print('root: x=0.5671397801525238')
 print('x_aprox:', ans[0])
 print('iter:', ans[1])
 print()
@@ -153,14 +153,14 @@ print('x_aprox:', ans[0])
 print()
 
 #------------------------------------------------------------------------------
-# Test 6: sne_fd_6 (Chebyshev)
+# Test 6: sne_fd_6 (Steffensen)
 #------------------------------------------------------------------------------
 f = 'e**x-(1/x)'; x0 = 1; tol = 0.001
 
-#Expected Answer: x = 0.5673043631887621
+#Expected Answer: x = 0.5671399085157954
 ans = sne_fd_6(f, x0, tol)
 
-print('root: x=0.5673043631887621')
+print('root: x=0.5671399085157954')
 print('x_aprox:', ans[0])
 print('iter:', ans[1])
 print()
