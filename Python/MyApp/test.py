@@ -60,7 +60,31 @@ print('x_aprox:', ans[0])
 print('iter:', ans[1])
 print()
 
+#------------------------------------------------------------------------------
+# Test 5: sne_ud_5 (Halley)
+#------------------------------------------------------------------------------
+f = 'e**x-(1/x)'; x0 = 1; tol = 0.001
 
+#Expected Answer: x = 0.5673043631887621
+ans = sne_ud_4(f, x0, tol)
+
+print('root: x=0.5673043631887621')
+print('x_aprox:', ans[0])
+print('iter:', ans[1])
+print()
+
+#------------------------------------------------------------------------------
+# Test 6: sne_ud_6 (Chebyshev)
+#------------------------------------------------------------------------------
+f = 'e**x-(1/x)'; x0 = 1; tol = 0.001
+
+#Expected Answer: x = 0.5673043631887621
+ans = sne_ud_6(f, x0, tol)
+
+print('root: x=0.5673043631887621')
+print('x_aprox:', ans[0])
+print('iter:', ans[1])
+print()
 
 #------------------------------------------------------------------------------
 # TEST OF FREE DERIVATIVE METHODS
@@ -78,12 +102,12 @@ print('x_aprox:', ans[0])
 print('iter:', ans[1])
 
 #------------------------------------------------------------------------------
-# Test 2: sne_ud_2 (Jain method based on Steffensen secant method)
+# Test 2: sne_fd_2 (Jain method based on Steffensen secant method)
 #------------------------------------------------------------------------------
 f = '(x**2+5*x'; x0 = 1;tol = 0.001
 
 #Expected Answer: x=0.08235294117647074
-ans = sne_ud_2(f, x0, tol,graf)
+ans = sne_fd_2(f, x0, tol,graf)
 
 print('root: x=3.00722843')
 print('x_aprox:', ans[0])
@@ -91,12 +115,12 @@ print('iter:', ans[1])
 print()
 
 #------------------------------------------------------------------------------
-# Test 3: sne_ud_3 (Dehghan and Hajarian method)
+# Test 3: sne_fd_3 (Dehghan and Hajarian method)
 #------------------------------------------------------------------------------
 f = 'cos(x)'; x0 = 1;tol = 0.001
 
 #Expected Answer: x = 0.5403023058681398
-ans = sne_ud_3(f, x0, tol,graf)
+ans = sne_fd_3(f, x0, tol,graf)
 
 print('root: x=3.00722843')
 print('x_aprox:', ans[0])
@@ -104,12 +128,12 @@ print('iter:', ans[1])
 print()
 
 #------------------------------------------------------------------------------
-# Test 4: sne_ud_4 (Ostrowski method)
+# Test 4: sne_fd_4 (Ostrowski method)
 #------------------------------------------------------------------------------
 f = 'x**2-13*x-12'; x0 = 2;tol = 0.01
 
 #Expected Answer: x = -0.86567552952761451
-ans = sne_ud_4(f, x0, tol)
+ans = sne_fd_4(f, x0, tol)
 
 print('root: x=-0.86567552952761451')
 print('x_aprox:', ans[0])
@@ -117,13 +141,26 @@ print('iter:', ans[1])
 print()
 
 #------------------------------------------------------------------------------
-# Test 5: sne_ud_5 (Muller Bisection method)
+# Test 5: sne_fd_5 (Muller Bisection method)
 #------------------------------------------------------------------------------
 f = 'x**2-13*x-12'; x0 = 3; x1 = 1; x3 = 2
 
 #Expected Answer: x = 2.618033988749895
-ans = sne_ud_5(f, x0, x1, x2)
+ans = sne_fd_5(f, x0, x1, x2)
 
 print('root: x=2.618033988749895')
 print('x_aprox:', ans[0])
+print()
+
+#------------------------------------------------------------------------------
+# Test 6: sne_fd_6 (Chebyshev)
+#------------------------------------------------------------------------------
+f = 'e**x-(1/x)'; x0 = 1; tol = 0.001
+
+#Expected Answer: x = 0.5673043631887621
+ans = sne_fd_6(f, x0, tol)
+
+print('root: x=0.5673043631887621')
+print('x_aprox:', ans[0])
+print('iter:', ans[1])
 print()
