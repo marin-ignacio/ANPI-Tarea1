@@ -245,7 +245,7 @@ def sne_ud_3(func, m, xo, tol,graf = 1):
     '''
 
     try:
-        f = lambda x: eval(funct, {'x': x, 'pi': pi, 'e': e,
+        f = lambda x: eval(func, {'x': x, 'pi': pi, 'e': e,
                                   'exp': exp, 'log': log, 'sqrt': sqrt,
                                   'cos': cos, 'sin': sin, 'tan': tan})
         x = xo
