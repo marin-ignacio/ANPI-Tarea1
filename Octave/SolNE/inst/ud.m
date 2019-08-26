@@ -61,6 +61,7 @@ endfunction
 %    |     c. To place and exponent use '^'
 %    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
 %    |
+%-------------------------------------------------------------------------------
 function [xAprox, iter] = euler(f, xo, tol, graf=1)
   x = xo;
   %Iteration counter
@@ -127,9 +128,10 @@ endfunction
 %    | The syntax rules for the input function are as follows:
 %    |     a. Use 'x' as variable name
 %    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
-%    |     c. To place and exponent use '**'
+%    |     c. To place and exponent use '^'
 %    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
 %    |
+%-------------------------------------------------------------------------------
 function [xAprox, iter] = dong(f, m, xo, tol, graf=1)
   x = xo;
   %Iteration counter
