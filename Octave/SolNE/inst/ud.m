@@ -28,20 +28,20 @@ function [r] = evaluate(f, x)
 endfunction
   
 %-------------------------------------------------------------------------------
-%MÈtodos numerico iterativo utilizando de derivada
+%M√©todos numerico iterativo utilizando de derivada
 %-------------------------------------------------------------------------------
-%Este mÈtodo fue desarrollado por el matem·tico Edmund Halley
-%InformaciÛn m·s detallada puede ser encontrada en la p·gina 370 del artÌculo "One-point Newton-type iterative methods: A unified point ofview", ecuaciÛn 12 con G(w) de acuerdo con la tabla 2.
+%Este m√©todo fue desarrollado por el matem√°tico Edmund Halley
+%Informaci√≥n m√°s detallada puede ser encontrada en la p√°gina 370 del art√≠culo "One-point Newton-type iterative methods: A unified point ofview", ecuaci√≥n 12 con G(w) de acuerdo con la tabla 2.
 %Documento recuperado de: https://tecdigital.tec.ac.cr/dotlrn/classes/IDC/CE3102/S-2-2019.CA.CE3102.1/file-storage/view/Tareas%2Ftarea-1%2Fart-culos-cient-ficos%2F1-s2.0-S0377042714003288-main.pdf
 %
-%Estructura del mÈtodo: [xAprox, iter] = sne_ud_1(f, xo, tol, graf = 1) 
+%Estructura del m√©todo: [xAprox, iter] = sne_ud_1(f, xo, tol, graf = 1) 
 %Donde:
 %
-%f: Tipo de dato String. Es la ecuaciÛn matem·tica a utilizar.
-%x0: Tipo de dato Integer. N˙mero inicial para comenzar la iteraciÛn.
-%tol: Tipo de dato Float. N˙mero mayor a cero que brinda condiciÛn de parada para la iteraciÛn.
-%graf: Tipo de dato Integer. Indica si se desea obtener el gr·fico de interaciones versus errores o no. Para ello se introduce 1 si se desea obtenerlo Û 0 si no.
-%xAprox: Tipo de dato Float. El valor de x que se aproxima a la soluciÛn de la ecuaciÛn no lineal.
+%f: Tipo de dato String. Es la ecuaci√≥n matem√°tica a utilizar.
+%x0: Tipo de dato Integer. N√∫mero inicial para comenzar la iteraci√≥n.
+%tol: Tipo de dato Float. N√∫mero mayor a cero que brinda condici√≥n de parada para la iteraci√≥n.
+%graf: Tipo de dato Integer. Indica si se desea obtener el gr√°fico de interaciones versus errores o no. Para ello se introduce 1 si se desea obtenerlo √≥ 0 si no.
+%xAprox: Tipo de dato Float. El valor de x que se aproxima a la soluci√≥n de la ecuaci√≥n no lineal.
 %iter: Tipo de dato Integer. Brinda las iteraciones requeridas para brindar la tolerancia establecida
 %-------------------------------------------------------------------------------
 function [xAprox, iter] = sne_ud_1(f, xo, tol, graf = 1)
@@ -63,7 +63,7 @@ function [xAprox, iter] = sne_ud_1(f, xo, tol, graf = 1)
       plot(cell2mat(error));
       ylabel('Errores (|f(x)|)');
       xlabel('Iteraciones (k)');
-      title('Gr·fica comparativa: MÈtodo Halley');
+      title('Gr√°fica comparativa: M√©todo Halley');
     endif
   catch err
     warning(err.identifier, err.message);
@@ -71,20 +71,20 @@ function [xAprox, iter] = sne_ud_1(f, xo, tol, graf = 1)
 endfunction
 
 %-------------------------------------------------------------------------------
-%MÈtodos numerico iterativo utilizando de derivada
+%M√©todos numerico iterativo utilizando de derivada
 %-------------------------------------------------------------------------------
-%Este mÈtodo fue desarrollado por el matem·tico Pafnuti Chebyshev
-%InformaciÛn m·s detallada puede ser encontrada en la p·gina 370 del artÌculo "One-point Newton-type iterative methods: A unified point ofview", ecuaciÛn 12 con G(w) de acuerdo con la tabla 2.
+%Este m√©todo fue desarrollado por el matem√°tico Pafnuti Chebyshev
+%Informaci√≥n m√°s detallada puede ser encontrada en la p√°gina 370 del art√≠culo "One-point Newton-type iterative methods: A unified point ofview", ecuaci√≥n 12 con G(w) de acuerdo con la tabla 2.
 %Documento recuperado de: https://tecdigital.tec.ac.cr/dotlrn/classes/IDC/CE3102/S-2-2019.CA.CE3102.1/file-storage/view/Tareas%2Ftarea-1%2Fart-culos-cient-ficos%2F1-s2.0-S0377042714003288-main.pdf
 %
-%Estructura del mÈtodo: [xAprox, iter] = sne_ud_2(f, xo, tol, graf = 1) 
+%Estructura del m√©todo: [xAprox, iter] = sne_ud_2(f, xo, tol, graf = 1) 
 %Donde:
 %
-%f: Tipo de dato String. Es la ecuaciÛn matem·tica a utilizar.
-%x0: Tipo de dato Integer. N˙mero inicial para comenzar la iteraciÛn.
-%tol: Tipo de dato Float. N˙mero mayor a cero que brinda condiciÛn de parada para la iteraciÛn.
-%graf: Tipo de dato Integer. Indica si se desea obtener el gr·fico de interaciones versus errores o no. Para ello se introduce 1 si se desea obtenerlo Û 0 si no.
-%xAprox: Tipo de dato Float. El valor de x que se aproxima a la soluciÛn de la ecuaciÛn no lineal.
+%f: Tipo de dato String. Es la ecuaci√≥n matem√°tica a utilizar.
+%x0: Tipo de dato Integer. N√∫mero inicial para comenzar la iteraci√≥n.
+%tol: Tipo de dato Float. N√∫mero mayor a cero que brinda condici√≥n de parada para la iteraci√≥n.
+%graf: Tipo de dato Integer. Indica si se desea obtener el gr√°fico de interaciones versus errores o no. Para ello se introduce 1 si se desea obtenerlo √≥ 0 si no.
+%xAprox: Tipo de dato Float. El valor de x que se aproxima a la soluci√≥n de la ecuaci√≥n no lineal.
 %iter: Tipo de dato Integer. Brinda las iteraciones requeridas para brindar la tolerancia establecida
 %-------------------------------------------------------------------------------
 function [xAprox, iter] = sne_ud_2(f, xo, tol, graf = 1)
@@ -106,9 +106,38 @@ function [xAprox, iter] = sne_ud_2(f, xo, tol, graf = 1)
       plot(cell2mat(error));
       ylabel('Errores (|f(x)|)');
       xlabel('Iteraciones (k)');
-      title('Gr·fica comparativa: MÈtodo Chebyshev');
+      title('Gr√°fica comparativa: M√©todo Chebyshev');
     endif
   catch err
     warning(err.identifier, err.message);
   end_try_catch
+endfunction
+
+%-------------------------------------------------------------------------------
+%M√©todos numerico iterativo utilizando de derivada
+%-------------------------------------------------------------------------------
+%Este m√©todo fue desarrollado por Osstrowski
+%Informaci√≥n m√°s detallada puede ser encontrada en la p√°gina 370 del art√≠culo "Steffensen type methods for solving nonlinear equations‚ú©", ecuaci√≥n 2.
+%Documento recuperado de: https://tecdigital.tec.ac.cr/dotlrn/classes/IDC/CE3102/S-2-2019.CA.CE3102.1/file-storage/view/Tareas%2Ftarea-1%2Fart-culos-cient-ficos%2FMetodo2.pdf
+%
+%Estructura del m√©todo: [xAprox, iter] = sne_ud_2(f, xo, tol) 
+%Donde:
+%
+%func: Tipo de dato String. Es la ecuaci√≥n matem√°tica a utilizar.
+%x0: Tipo de dato Integer. N√∫mero inicial para comenzar la iteraci√≥n.
+%tol: Tipo de dato Float. N√∫mero mayor a cero que brinda condici√≥n de parada para la iteraci√≥n.
+%xAprox: Tipo de dato Float. El valor de x que se aproxima a la soluci√≥n de la ecuaci√≥n no lineal.
+%iterations: Tipo de dato Integer. Brinda las iteraciones requeridas para brindar la tolerancia establecida
+%-------------------------------------------------------------------------------
+function [x_k, iterations] = ostrowski(func, x0, tol)
+  x = x0;
+  iterations = 0;
+  do
+    
+    iterations++;
+    y = (x-(evaluate(func,x)/derivate(func, x)));
+    x_k = (y - (((evaluate(func,x) + 2 * evaluate(func,y)) / (evaluate(func,x))) * (evaluate(func,y) / derivate(func,x))));
+    x = x_k;
+ 
+  until (abs(evaluate(func,x)) <= tol);
 endfunction
