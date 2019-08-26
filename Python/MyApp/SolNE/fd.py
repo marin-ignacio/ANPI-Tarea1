@@ -2,6 +2,27 @@ from math import *
 import matplotlib.pyplot as plt
 import numpy as np
 
+#-------------------------------------------------------------------------------
+# Useful methods
+#-------------------------------------------------------------------------------
+def derivate(func, z):
+    x = Symbol('x')
+    y = eval(func)
+    y_dx = y.diff(x)
+    f = lambdify(x, y_dx, 'numpy')
+    return f(z)
+
+def derivate2(func, z):
+    x = Symbol('x')
+    y = eval(func)
+    y_dx = y.diff(x)
+    y_dx2 = y_dx.diff(x)
+    f = lambdify(x, y_dx2, 'numpy')
+    return f(z)
+
+def evaluate(func, x):
+    return eval(func)
+
 #-----------------------------------------------------------------------------------
 # Method 1: Improved Otrowski's method free derivative
 #-----------------------------------------------------------------------------------
@@ -383,10 +404,10 @@ def sne_fd_6(f, xo, tol, graf = 1):
             error.append(tempTol)
             iteration.append(itera)
         if(graf):
-            plot(iteration,error)
-            ylabel('Errores')
-            xlabel('Iteraciones')
-            show()
+            plt.plot(iteration,error)
+            plt.ylabel('Errores')
+            plt.xlabel('Iteraciones')
+            plt.show()
         itera = itera + 1
         return xAprox, itera
     except SyntaxError as err:
