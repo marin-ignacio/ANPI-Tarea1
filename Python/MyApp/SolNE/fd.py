@@ -331,6 +331,75 @@ def sne_fd_5(fu,x0,x1,x2):
 
 
 #-----------------------------------------------------------------------------------
+# Method 6: Steffensen's Method
+#-----------------------------------------------------------------------------------
+def sne_fd_6(f, xo, tol, graf = 1):
+    '''
+    |
+    | Este método fue desarrollado por el matemático J.F. Steffensen
+    | Información más detallada puede ser encontrada en la página 264 del artículo "Applied Mathematics and Computation", ver ecuación 2.
+    | ------------------------------------------------------------------------------
+    | Parameters:
+    | -----------
+    |    f   :
+    |        Tipo de dato String. Es la ecuación matemática a utilizar.
+    |    x0  :
+    |        Tipo de dato Integer. Número inicial para comenzar la iteración.
+    |    tol :
+    |        Tipo de dato Float. Número mayor a cero que brinda condición de parada para la iteración.
+    |    graf:
+    |        Tipo de dato Integer. Indica si se desea obtener el gráfico de interaciones versus errores o no. Para ello se introduce 1 si se desea obtenerlo ó 0 si no.
+    |        
+    | Returns:
+    | --------
+    |    xAprox :
+    |        Tipo de dato Float. El valor de x que se aproxima a la solución de la ecuación no lineal.
+    |    itera  :
+    |        Tipo de dato Integer. Brinda las iteraciones requeridas para brindar la tolerancia establecida.
+    | ------------------------------------------------------------------------------
+    |
+    | The syntax rules for the input function are as follows:
+    |     a. Use 'x' as variable name. Insert the function as string.
+    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+    |     c. To place and exponent use '**'
+    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+    |
+    '''
+    x = xo
+    itera = 0
+    error = []
+    iteration = []
+    tempTol = Inf
+    xAprox = Inf
+    try:
+        while(tempTol >= tol):
+            w = x + eval(f)
+            fx = evaluate(f, x)
+            fw = evaluate(f, w)
+            fxw = (fx - fw) / (x - w)
+            xAprox = x - (fx / fxw)
+            x = xAprox
+            tempTol = abs(eval(f))
+            error.append(tempTol)
+            iteration.append(itera)
+        if(graf):
+            plot(iteration,error)
+            ylabel('Errores')
+            xlabel('Iteraciones')
+            show()
+        itera = itera + 1
+        return xAprox, itera
+    except SyntaxError as err:
+        print('Has cometido un error de syntaxis en:')
+        print(err.text)
+        print((err.offset - 1)*' '+'^')
+    except ZeroDivisionError as zde:
+        print('División entre cero.')
+        return xAprox, itera    
+    
+    
+ 
+#-----------------------------------------------------------------------------------
 # Function to graph
 #-------------------------------------------------------------------------------
 def graph(x,y):
