@@ -14,10 +14,9 @@ ans = []
 f = '(x**2) - exp(x) - 3*x + 2'; x0 = 0.7
 
 #Expected Answer: x=0.25752586
-
 ans = sne_ud_1(f, x0, tol)
 
-print('Expected aproximation: x=0.25752586')
+print('root: x=0.25752586')
 print('x_aprox:', ans[0])
 print('iter:', ans[1])
 print()
@@ -27,14 +26,13 @@ print()
 #------------------------------------------------------------------------------
 f = '(exp((x**2) + (7*x) - 30) - 1)**6'; x0 = 3.1; m = 6
 
-#Expected Answer: x=3
-
+#Expected Answer: x=3.00722843
 ans = sne_ud_2(f, m, x0, tol)
 
+print('root: x=3.00722843')
 print('x_aprox:', ans[0])
 print('iter:', ans[1])
 print()
-
 
 #------------------------------------------------------------------------------
 # TEST OF FREE DERIVATIVE METHODS
@@ -44,11 +42,13 @@ print()
 #------------------------------------------------------------------------------
 f = '(x**3) + 4*(x**2) - 10'; x0 = 1.5
 
+#Expected Answer: x=1.36523001
 ans = sne_fd_1(f, x0, tol)
 
+print('root: x=1.36523001')
 print('x_aprox:', ans[0])
 print('iter:', ans[1])
-print()
+
 
 
 
