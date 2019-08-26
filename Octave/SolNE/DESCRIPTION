@@ -1,0 +1,9 @@
+Name: SolNE
+Version: 0.0.1
+Date: 2019-08-25
+Title: Solving nonlinear ecuations
+Author: Aaron Solera, Ignacio Marín, Maesly Velásquez & Yenira Chacón
+Maintainer: Aaron Solera, Ignacio Marín, Maesly Velásquez & Yenira Chacón
+License: GNU
+Description: Recopilación de métodos numéricos para la resolución de ecuaciones no lineales de la forma f(x) = 0.
+Categories: Mathematics
