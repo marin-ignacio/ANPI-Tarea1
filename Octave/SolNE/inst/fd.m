@@ -207,7 +207,7 @@ endfunction
 %    |     c. To place and exponent use '**'
 %    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
 %    |
-function [r_2_1] = sne_fd_5(func,x0,x1,x2)
+function [r_2_1] = sne_fd_6(func,x0,x1,x2)
     x = x0
     x0_x2 = (x-x2)^2
     x1_x2 = (x1-x2)
