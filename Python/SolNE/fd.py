@@ -95,5 +95,101 @@ def sne_fd_1(funct, x, tol, graf=1):
 # Method 2: 
 #-----------------------------------------------------------------------------------
 
+    '''
+    |
+    | Function that implements the Ostrowski's free-derivative to solve f(x) = 0
+    |
+    | ------------------------------------------------------------------------------
+    | Parameters:
+    | -----------
+    |    fu :
+    |        Text that represents the function f(x)
+    |    x0 :
+    |        Initial value of the iterative method
+    |    tol :
+    |        Stop criterion of the iterative method
+    |        
+    | Returns:
+    | --------
+    |    x_k :
+    |       Approximation to the solution of the equation f(x) = 0
+    |    iterat :
+    |        Number of iterations used to approximate the zero of the function
+    | ------------------------------------------------------------------------------
+    |
+    | The syntax rules for the input function are as follows:
+    |     a. Use 'x' as variable name. Insert the function as string.
+    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+    |     c. To place and exponent use '**'
+    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+    |
+    '''
+def ostrowski_free_derivative_method(fu,x0,tol):
+    f = lambda x: eval(fu, {'x': x, 'pi': pi, 'e': e,'exp': exp,
+                            'log': log, 'sqrt': sqrt,'cos': cos,
+                            'sin': sin, 'tan': tan})
+    iterat = 0
+    while abs(f(x0)) > tol:                   #Ending condition
+        y = (x0 - ((2 * (f(x0)) ** 2) / (f(x0 + f(x0)) - f(x0 - f(x0)))))        #Ostrowski's formula
+        xk = (y *((f(y) - f(x0)) / (2 * f(y) - f(x0))))
+        iterat += 1
+        x0 = xk
+        print(x0)
+    return xk,iterat
+
+#-----------------------------------------------------------------------------------
+# Method 3: 
+#-----------------------------------------------------------------------------------
+    '''
+    |
+    | Function that implements the Ostrowski's free-derivative to solve f(x) = 0
+    |
+    | ------------------------------------------------------------------------------
+    | Parameters:
+    | -----------
+    |    fu :
+    |        Text that represents the function f(x)
+    |    x0 :
+    |        First initial value of the method
+    |    x1 :
+    |        Second initial value of the method
+    |    x2 :
+    |        Third initial value of the method
+    |    tol :
+    |        Stop criterion of the iterative method
+    |        
+    | Returns:
+    | --------
+    |    r_2_1 :
+    |       Approximation to the solution of the equation f(x) = 0
+    | ------------------------------------------------------------------------------
+    |
+    | The syntax rules for the input function are as follows:
+    |     a. Use 'x' as variable name. Insert the function as string.
+    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+    |     c. To place and exponent use '**'
+    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+    |
+    '''
+def muller_bisection(fu,x0,x1,x2):
+    f = lambda x: eval(fu, {'x': x, 'pi': pi, 'e': e,'exp': exp,    
+                            'log': log, 'sqrt': sqrt,'cos': cos,
+                            'sin': sin, 'tan': tan})
+    x0_x2 = (x0-x2)**2              #Values to put on the matrix to solve de system ecuations
+    x1_x2 = (x1-x2)
+    x2_x2 = 1
+    M = np.array([[x0_x2,x1_x2,x2_x2],[x0_x2,x1_x2,x2_x2],[x0_x2,x1_x2,x2_x2]])
+    MR = np.array([[f(x0)],[f(x1)],[f(x2)]])
+    X = np.linalg.pinv(M).dot(MR)                                #Calculates de A,B,C values
+    a_2 = X[1][0]
+    b_2 = X[1][0]
+    c_2 = X[2][0]
+    if (b_2 + math.sqrt((b_2)**2 - 4*a_2*c_2)) > (b_2 - math.sqrt((b_2)**2 - 4*a_2*c_2)):
+        r_2_1 = (x2 - ((2*c_2)/(b_2 + math.sqrt((b_2)**2 - 4*a_2*c_2))))
+        return r_2_1
+    else:
+        r_2_1 = (x2 - ((2*c_2)/(b_2 - math.sqrt((b_2)**2 - 4*a_2*c_2))))
+        return r_2_1
+
 
 
