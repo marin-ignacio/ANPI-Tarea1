@@ -27,28 +27,34 @@
 %Referencias:
 %https://tecdigital.tec.ac.cr/dotlrn/classes/IDC/CE3102/S-2-2019.CA.CE3102.1/file-storage/view/Tareas%2Ftarea-1%2Fart-culos-cient-ficos%2FArtículo3.pdf
 %
-function [x] = ssm(f,x,tol,graf = 1)
-  itera=0;
-  error=[];
-  iteracion=[];
-  tempTol=Inf;
-  while tempTol>= tol
-    itera=itera+1;
-    fx=f(x);
-    z=x+f(x);
-    fz=f(z);
-    y=(x-((f(x)^2)/(fz-fx)));
-    fy=f(y);   
-    xAprox= (x - (fx^3)/((fz-fx)*(fx-fy)));
-    x=xAprox;
-    tempTol = abs(f(x))
-    error(end + 1)= tempTol
-    iteracion(end + 1)=itera
-  endwhile
-  if graf==1
-    plot(iteracion,error);
-    ylabel('Errores');
-    xlabel('Iteraciones');
-  endif
-  disp(error);
+function [xAprox, iter] = ssm(f, xo, tol, graf = 1)
+  x = xo;
+  iter = 0;
+  error = [];
+  iteracion = [];
+  try
+    do
+      iter++;
+      fx=f(x);
+      z=x+f(x);
+      fz=f(z);
+      y=(x-((f(x)^2)/(fz-fx)));
+      fy=f(y);   
+      xAprox= (x - (fx^3)/((fz-fx)*(fx-fy)));
+      x=xAprox;
+      x = xAprox;
+      tempTol = abs(eval(f));
+      error(end+1)= tempTol;
+      iteracion(end+1) = itera; 
+    until (tempTol <= tol);
+    if(graf == 1)
+      plot(error,iteracion);
+      ylabel('Errores (|f(x)|)');
+      xlabel('Iteraciones (k)');
+      title('Gráfica comparativa: Método Jain basado en Steffensen Secant methods');
+    endif
+  catch err
+    warning(err.identifier, err.message);
+  end_try_catch
 endfunction
+
