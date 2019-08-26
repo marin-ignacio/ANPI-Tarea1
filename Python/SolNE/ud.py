@@ -1,6 +1,6 @@
 from math import *
 from mpmath import *
-import plotter as plt
+import matplotlib.pyplot as plt
 
 #-----------------------------------------------------------------------------------
 # Method 1: Euler's method
@@ -82,7 +82,7 @@ def sne_ud_1(funct, x, tol, graf=1):
 
         if (1 == graf):
             #Show 'iteration vs |f(x)|' graphic
-            plt.graph(iterations, fxs)
+            graph(iterations, fxs)
         elif (0 != graf):
             #Shown a warning message if graf has an other value than 1 or 0
             print('WARNING: El parámetro para mostrar la gráfica tiene un valor incorrecto!')
@@ -188,11 +188,9 @@ def sne_ud_2(funct, m, x, tol, graf=1):
 
 
 #-----------------------------------------------------------------------------------
-# Method 3: 
+# Method 4: Otrowski's Method
 #-----------------------------------------------------------------------------------
-
-
-def ostrowskis_method(fu,x0,tol):
+def sne_ud_4(fu,x0,tol):
     '''
     |
     | Function that implements the Ostrowski's to solve f(x) = 0
@@ -239,6 +237,29 @@ def ostrowskis_method(fu,x0,tol):
 
     return xk, iterat
 
+
+#-----------------------------------------------------------------------------------
+# Function to graph
+#-----------------------------------------------------------------------------------
+def graph(x,y):
+    
+    #Initialize the plot
+    fig = plt.figure()
+
+    #Set up axes
+    ax = fig.add_subplot(111)
+
+    #Activate grid for the plot
+    ax.grid(True)
+
+    #Set the names to the axes
+    ax.set(title='k vs |f(x)|', xlabel='k', ylabel='|f(x)|')
+
+    #Plot the data
+    ax.plot(x, y, color='blue', linewidth=1.5)
+
+    #Show the plot
+    plt.show()
 
 
 

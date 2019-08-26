@@ -1,5 +1,6 @@
 from math import *
-import plotter as plt
+import matplotlib.pyplot as plt
+import numpy as np
 
 #-----------------------------------------------------------------------------------
 # Method 1: Improved Otrowski's Method Free Derivative
@@ -79,7 +80,7 @@ def sne_fd_1(funct, x, tol, graf=1):
             
         if (1 == graf):
             #Show 'iteration vs |f(x)|' graphic
-            plt.graph(iterations, fxs)
+            graph(iterations, fxs)
         elif (0 != graf):
             #Shown a warning message if graf has an other value than 1 or 0
             print('WARNING: El parámetro para mostrar la gráfica tiene un valor incorrecto!')
@@ -92,9 +93,9 @@ def sne_fd_1(funct, x, tol, graf=1):
 
 
 #-----------------------------------------------------------------------------------
-# Method 2: 
+# Method 4: Ostrowski Free Derivative Method
 #-----------------------------------------------------------------------------------
-
+def sne_fd_4(fu,x0,tol):
     '''
     |
     | Function that implements the Ostrowski's free-derivative to solve f(x) = 0
@@ -124,7 +125,7 @@ def sne_fd_1(funct, x, tol, graf=1):
     |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
     |
     '''
-def ostrowski_free_derivative_method(fu,x0,tol):
+    
     f = lambda x: eval(fu, {'x': x, 'pi': pi, 'e': e,'exp': exp,
                             'log': log, 'sqrt': sqrt,'cos': cos,
                             'sin': sin, 'tan': tan})
@@ -138,8 +139,9 @@ def ostrowski_free_derivative_method(fu,x0,tol):
     return xk,iterat
 
 #-----------------------------------------------------------------------------------
-# Method 3: 
+# Method 5: Muller Bisection
 #-----------------------------------------------------------------------------------
+def sne_fd_5(fu,x0,x1,x2):
     '''
     |
     | Function that implements the Ostrowski's free-derivative to solve f(x) = 0
@@ -171,7 +173,7 @@ def ostrowski_free_derivative_method(fu,x0,tol):
     |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
     |
     '''
-def muller_bisection(fu,x0,x1,x2):
+    
     f = lambda x: eval(fu, {'x': x, 'pi': pi, 'e': e,'exp': exp,    
                             'log': log, 'sqrt': sqrt,'cos': cos,
                             'sin': sin, 'tan': tan})
@@ -192,4 +194,26 @@ def muller_bisection(fu,x0,x1,x2):
         return r_2_1
 
 
+#-----------------------------------------------------------------------------------
+# Function to graph
+#-------------------------------------------------------------------------------
+def graph(x,y):
+    
+    #Initialize the plot
+    fig = plt.figure()
+
+    #Set up axes
+    ax = fig.add_subplot(111)
+
+    #Activate grid for the plot
+    ax.grid(True)
+
+    #Set the names to the axes
+    ax.set(title='k vs |f(x)|', xlabel='k', ylabel='|f(x)|')
+
+    #Plot the data
+    ax.plot(x, y, color='blue', linewidth=1.5)
+
+    #Show the plot
+    plt.show()
 
