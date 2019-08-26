@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #-----------------------------------------------------------------------------------
-# Method 1: Improved Otrowski's Method Free Derivative
+# Method 1: Improved Otrowski's method free derivative
 #-----------------------------------------------------------------------------------
 def sne_fd_1(funct, x, tol, graf=1):
     '''
@@ -92,9 +92,8 @@ def sne_fd_1(funct, x, tol, graf=1):
         print('ERROR: La función ingresada tiene una sintaxis incorrecta!')
 
 #-----------------------------------------------------------------------------------
-# Method 2: Método de Jain basado en Steffens-Secant Method
+# Method 2: Jain's Method based en Steffens-Secant Method
 #-----------------------------------------------------------------------------------
-
 def sne_fd_2(func,xo,tol,graf = 1):
     '''
     Método de Jain, Steffensen-secant method
@@ -156,9 +155,9 @@ def sne_fd_2(func,xo,tol,graf = 1):
             show()
     except (NameError, SyntaxError):
         print('ERROR: La función ingresada tiene una sintaxis incorrecta!')
-        
+
 #-----------------------------------------------------------------------------------
-# Method 3: Método de Dehghan y Hajarian 
+# Method 3: Dehghan y Hajarian method
 #-----------------------------------------------------------------------------------
 def sne_fd_3(func, xo,tol,graf = 1):
     '''
@@ -227,7 +226,8 @@ def sne_fd_3(func, xo,tol,graf = 1):
     except (NameError, SyntaxError):
         
         print('ERROR: La función ingresada tiene una sintaxis incorrecta!')
-    
+
+
 #-----------------------------------------------------------------------------------
 # Method 4: Ostrowski Free Derivative Method
 #-----------------------------------------------------------------------------------

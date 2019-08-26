@@ -185,10 +185,10 @@ def sne_ud_2(funct, m, x, tol, graf=1):
     except (NameError, SyntaxError):
         
         print('ERROR: La función ingresada tiene una sintaxis incorrecta!')
-#-----------------------------------------------------------------------------------
-# Method 3: Método de Homeier
-#-----------------------------------------------------------------------------------
 
+#-----------------------------------------------------------------------------------
+# Method 3: Homeier method
+#-----------------------------------------------------------------------------------
 def sne_ud_3(func, m, xo, tol,graf = 1):
     '''
     Método de Homeier
@@ -255,7 +255,7 @@ def sne_ud_3(func, m, xo, tol,graf = 1):
         print('ERROR: La función ingresada tiene una sintaxis incorrecta!')
 
 #-----------------------------------------------------------------------------------
-# Method 4: Otrowski's Method
+# Method 4: Otrowski's method
 #-----------------------------------------------------------------------------------
 def sne_ud_4(fu,x0,tol):
     '''
