@@ -284,15 +284,15 @@ function [xAprox, iter] = sne_ud_6(f, xo, tol, graf = 1)
 endfunction
 
 %-------------------------------------------------------------------------------
-% OSTROWSKI: método 6
+% OSTROWSKI: método 5
 %-------------------------------------------------------------------------------
 %    |
-%    | Function that implements the Dong's method (1987)(D87) to solve f(x) = 0
+%    | Function that implements the Ostrowski's method to solve f(x) = 0
 %    |
 %    | ---------------------------------------------------------------------------------
 %    | Parameters:
 %    | -----------
-%    |   funct :
+%    |   func :
 %    |       Text that represents the function f(x)
 %    |   x :
 %    |       Initial value of the iterative method
@@ -314,7 +314,7 @@ endfunction
 %    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
 %    |
 %-------------------------------------------------------------------------------
-function [x_k, iterations] = ostrowski(func, x0, tol)
+function [x_k, iterations] = sne_ud_5(func, x0, tol)
   x = x0;
   iterations = 0;
   do
