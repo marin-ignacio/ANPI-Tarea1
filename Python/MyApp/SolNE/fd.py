@@ -161,6 +161,11 @@ def sne_fd_2(func,xo,tol,graf = 1):
             ylabel('Errores')
             xlabel('Iteraciones')
             show()
+        elif (0 != graf):
+            #Shown a warning message if graf has an other value than 1 or 0
+            print('WARNING: El parámetro para mostrar la gráfica tiene un valor incorrecto!')
+        return [xAprox, itera]
+
     except (NameError, SyntaxError):
         print('ERROR: La función ingresada tiene una sintaxis incorrecta!')
 
@@ -231,6 +236,12 @@ def sne_fd_3(func, xo,tol,graf = 1):
             ylabel('Errores')
             xlabel('Iteraciones')
             show()
+        elif (0 != graf):
+            #Shown a warning message if graf has an other value than 1 or 0
+            print('WARNING: El parámetro para mostrar la gráfica tiene un valor incorrecto!')
+
+        return [xAprox, itera]
+
     except (NameError, SyntaxError):
         
         print('ERROR: La función ingresada tiene una sintaxis incorrecta!')
