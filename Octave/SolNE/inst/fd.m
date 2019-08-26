@@ -44,7 +44,7 @@ endfunction
 %    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
 %    |
 %-------------------------------------------------------------------------------
-function [xAprox, iter] = iodf(f, xo, tol, graf=1)
+function [xAprox, iter] = sne_fd_1(f, xo, tol, graf=1)
   x = xo;
   %Iteration counter
   iter = 0;
