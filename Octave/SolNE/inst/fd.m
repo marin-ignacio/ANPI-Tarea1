@@ -80,23 +80,39 @@ function [xAprox, iter] = iodf(f, xo, tol, graf=1)
 endfunction
 
 %-------------------------------------------------------------------------------
-%Métodos numericos iterativos libres de derivadas
+% Steffensen's Method
 %-------------------------------------------------------------------------------
-%Este método fue desarrollado por el matemático J.F. Steffensen
-%Información más detallada puede ser encontrada en la página 264 del artículo "Applied Mathematics and Computation", ecuación 2.
-%Documento recuperado de: https://tecdigital.tec.ac.cr/dotlrn/classes/IDC/CE3102/S-2-2019.CA.CE3102.1/file-storage/view/Tareas%2Ftarea-1%2Fart-culos-cient-ficos%2F1-s2.0-S0096300316305811-main.pdf
-%
-%Estructura del método: [xAprox, iter] = sne_fd_1(f, xo, tol, graf = 1) 
-%Donde:
-%
-%f: Tipo de dato String. Es la ecuación matemática a utilizar.
-%x0: Tipo de dato Integer. Número inicial para comenzar la iteración.
-%tol: Tipo de dato Float. Número mayor a cero que brinda condición de parada para la iteración.
-%graf: Tipo de dato Integer. Indica si se desea obtener el gráfico de interaciones versus errores o no. Para ello se introduce 1 si se desea obtenerlo ó 0 si no.
-%xAprox: Tipo de dato Float. El valor de x que se aproxima a la solución de la ecuación no lineal.
-%iter: Tipo de dato Integer. Brinda las iteraciones requeridas para brindar la tolerancia establecida
+%    |
+%    | Este método fue desarrollado por el matemático J.F. Steffensen
+%    | Información más detallada puede ser encontrada en la página 264 del artículo "Applied Mathematics and Computation", ver ecuación 2.
+%    | ------------------------------------------------------------------------------
+%    | Parameters:
+%    | -----------
+%    |    f   :
+%    |        Tipo de dato String. Es la ecuación matemática a utilizar.
+%    |    x0  :
+%    |        Tipo de dato Integer. Número inicial para comenzar la iteración.
+%    |    tol :
+%    |        Tipo de dato Float. Número mayor a cero que brinda condición de parada para la iteración.
+%    |    graf:
+%    |        Tipo de dato Integer. Indica si se desea obtener el gráfico de interaciones versus errores o no. Para ello se introduce 1 si se desea obtenerlo ó 0 si no.
+%    |        
+%    | Returns:
+%    | --------
+%    |    xAprox :
+%    |        Tipo de dato Float. El valor de x que se aproxima a la solución de la ecuación no lineal.
+%    |    itera  :
+%    |        Tipo de dato Integer. Brinda las iteraciones requeridas para brindar la tolerancia establecida.
+%    | ------------------------------------------------------------------------------
+%    |
+%    | The syntax rules for the input function are as follows:
+%    |     a. Use 'x' as variable name. Insert the function as string.
+%    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
+%    |     c. To place and exponent use '**'
+%    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
+%    |
 %-------------------------------------------------------------------------------
-function [xAprox, iter] = sne_fd_1(f, xo, tol, graf = 1)
+function [xAprox, iter] = sne_fd_4(f, xo, tol, graf = 1)
   x = xo;
   iter = 0;
   try
@@ -123,7 +139,7 @@ function [xAprox, iter] = sne_fd_1(f, xo, tol, graf = 1)
 endfunction
 
 %-------------------------------------------------------------------------------
-% Ostrowski: Método 5
+%Métodos numericos iterativos libres de derivadas
 %-------------------------------------------------------------------------------
 %Este método fue desarrollado por el matemático Ostrowski
 %Información más detallada puede ser encontrada en la página 3059 del artículo "Steffensen type methods for solving nonlinear equations", ecuación 2.
@@ -151,7 +167,7 @@ function [x_k, iterations] = ostrowski_free_derivative(func, x0, tol)
 endfunction
 
 %-------------------------------------------------------------------------------
-%Muller-Bisection: Método 6
+%Métodos numericos iterativos libres de derivadas
 %-------------------------------------------------------------------------------
 %Este método fue desarrollado por el matemático Muller
 %Información más detallada puede ser encontrada en la página 301 del artículo "Improved Muller method and Bisection method with global and asymptotic superlinear convergence of both point and interval for solving nonlinear equations", ecuación 2.1.
