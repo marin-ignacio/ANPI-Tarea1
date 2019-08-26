@@ -199,7 +199,7 @@ def sne_ud_2(funct, m, x, tol, graf=1):
 
         if (1 == graf):
             #Show 'iteration vs |f(x)|' graphic
-            plt.graph(iterations, fxs)
+            graph(iterations, fxs)
         elif (0 != graf):
             #Shown a warning message if graf has an other value than 1 or 0
             print('WARNING: El parámetro para mostrar la gráfica tiene un valor incorrecto!')
@@ -484,3 +484,4 @@ def graph(x,y):
 
     #Show the plot
     plt.show()
+
