@@ -40,7 +40,7 @@ endfunction
 %    | The syntax rules for the input function are as follows:
 %    |     a. Use 'x' as variable name
 %    |     b. To multiply, add and subtract use '*', '+' and '-' respectively
-%    |     c. To place and exponent use '**'
+%    |     c. To place and exponent use '^'
 %    |     d. The function names of math library can be used (e.g., sqrt(), exp(), etc)
 %    |
 %-------------------------------------------------------------------------------
