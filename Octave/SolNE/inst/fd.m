@@ -123,7 +123,7 @@ function [xAprox, iter] = sne_fd_1(f, xo, tol, graf = 1)
 endfunction
 
 %-------------------------------------------------------------------------------
-%Métodos numericos iterativos libres de derivadas
+% Ostrowski: Método 5
 %-------------------------------------------------------------------------------
 %Este método fue desarrollado por el matemático Ostrowski
 %Información más detallada puede ser encontrada en la página 3059 del artículo "Steffensen type methods for solving nonlinear equations", ecuación 2.
@@ -151,7 +151,7 @@ function [x_k, iterations] = ostrowski_free_derivative(func, x0, tol)
 endfunction
 
 %-------------------------------------------------------------------------------
-%Métodos numericos iterativos libres de derivadas
+%Muller-Bisection: Método 6
 %-------------------------------------------------------------------------------
 %Este método fue desarrollado por el matemático Muller
 %Información más detallada puede ser encontrada en la página 301 del artículo "Improved Muller method and Bisection method with global and asymptotic superlinear convergence of both point and interval for solving nonlinear equations", ecuación 2.1.
