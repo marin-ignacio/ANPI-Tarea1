@@ -143,7 +143,7 @@ def sne_fd_2(func,xo,tol,graf = 1):
     https://tecdigital.tec.ac.cr/dotlrn/classes/IDC/CE3102/S-2-2019.CA.CE3102.1/file-storage/view/Tareas%2Ftarea-1%2Fart-culos-cient-ficos%2FArtículo3.pdf
     '''
     try:
-        f = lambda x: eval(funct, {'x': x, 'pi': pi, 'e': e,
+        f = lambda x: eval(func, {'x': x, 'pi': pi, 'e': e,
                                   'exp': exp, 'log': log, 'sqrt': sqrt,
                                   'cos': cos, 'sin': sin, 'tan': tan})
         
@@ -209,7 +209,7 @@ def sne_fd_3(func, xo,tol,graf = 1):
     '''
 
     try:
-        f = lambda x: eval(funct, {'x': x, 'pi': pi, 'e': e,
+        f = lambda x: eval(func, {'x': x, 'pi': pi, 'e': e,
                                   'exp': exp, 'log': log, 'sqrt': sqrt,
                                   'cos': cos, 'sin': sin, 'tan': tan})
         x = xo
